@@ -1,0 +1,21 @@
+<md-toolbar color="primary">
+  <a class="logo" [routerLink]="['/']">twitchclips.io</a><md-icon style="color:yellow;">trending_up</md-icon>
+  <span class="spacer"></span>
+  <!--User login/register START (style="background: #17201F;")-->
+  <div *ngIf="!user">
+      <button (click)="login()" md-button><fa [name]="'twitch'" [size]=1></fa> LOGIN</button>
+  </div>
+  <div *ngIf="user">
+    <button md-button [mdMenuTriggerFor]="appMenu">
+      Logged as <span style="color:white;">{{user.username}}</span>
+    </button>
+    <md-menu #appMenu="mdMenu">
+      <button (click)="logout()" md-menu-item>Logout</button>
+    </md-menu>
+  </div>
+  <!--User login/register END-->
+</md-toolbar>
+<form #query="ngForm">
+  <input ngModel name="input" class="search" placeholder="Enter streamer's or game's name to search for...">
+  <button type="submit" [routerLink]="['/search', query.value.input]" style="visibility: hidden;"></button>
+</form>

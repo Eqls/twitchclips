@@ -1,0 +1,27 @@
+<h3>Results for: {{query}}</h3>
+<md-tab-group>
+  <md-tab label="Channel">
+    <div class="clipbox">
+      <div *ngFor="let clip of channelTop" class="clip">
+        <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+        <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+        <div class="details">
+          <span>{{clip.views}} views</span>
+          <span>on {{clip.streamer}}</span>
+        </div>
+      </div>
+    </div>
+  </md-tab>
+  <md-tab label="Game">
+    <div class="clipbox">
+      <div *ngFor="let clip of gameTop" class="clip">
+        <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+        <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+        <div class="details">
+          <span>{{clip.views}} views</span>
+          <span>on {{clip.streamer}}</span>
+        </div>
+      </div>
+    </div>
+  </md-tab>
+</md-tab-group>

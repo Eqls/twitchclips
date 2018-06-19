@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-card {
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.video-card .clip {
+  width: 100%;
+}
+
+
+/* Social buttons */
+
+.video-card ul {
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: flex-end;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.video-card ul li {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 3px;
+  color: white;
+  cursor: hand;
+  cursor: pointer;
+  border-radius: 100%;
+  transition: box-shadow 0.25s;
+}
+
+.trending-list {
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 620px;
+  overflow-y: scroll;
+}
+
+.trending-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.trending-list::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+.trending-list::-webkit-scrollbar-thumb {
+  background-color: #3f51b5;
+  outline: 1px solid slategrey;
+}

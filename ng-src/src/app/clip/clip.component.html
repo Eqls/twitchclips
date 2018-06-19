@@ -1,0 +1,42 @@
+<div id="fb-root"></div>
+<div *ngIf="isLoaded(); else loading" class="container">
+  <div>
+  <md-card *ngIf="clip != null" class="video-card">
+    <md-card-header>
+      <md-card-title>{{clip.title}}</md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <div class="clip">
+        <iframe [src]='clip.embed_url' width='896' height='504' frameborder='0' scrolling='no' allowfullscreen='true'></iframe>
+      </div>
+      <ul>
+        <li mdTooltip="Share on facebook" [mdTooltipPosition]="'below'" class="fb-share-button" [attr.data-href]="currentURL" data-layout="button" data-size="small" style="background-color: #3b5998">
+          <fa [name]="'facebook'" [size]=1></fa>
+        </li>
+        <li mdTooltip="Share on twitter" [mdTooltipPosition]="'below'" style="background-color: #55acee">
+          <fa [name]="'twitter'" [size]=1></fa>
+        </li>
+        <li mdTooltip="Share on reddit" [mdTooltipPosition]="'below'" style="background-color: #ff4500">
+          <fa [name]="'reddit-alien'" [size]=1></fa>
+        </li>
+      </ul>
+    </md-card-content>
+  </md-card>
+  <comments [clipSlug]="clip.slug"></comments>
+</div>
+  <div *ngIf="clip != null" class="trending-list" infiniteScroll [scrollWindow]="false" (scrolled)="loadRelated()">
+    <div *ngFor="let clip of related" class="clip">
+      <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+      <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+      <div class="details">
+        <span>{{clip.views}} views</span>
+        <span>on {{clip.streamer}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="container">
+    <fa [name]="'refresh'" style="animation: fa-spin 1s infinite linear; margin:0 auto;" [size]=2 [spin]=true aria-hidden="true"></fa>
+  </div>
+</ng-template>

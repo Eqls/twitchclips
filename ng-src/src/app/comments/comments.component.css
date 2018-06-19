@@ -1,0 +1,74 @@
+.container {}
+
+
+/* Comments */
+
+.comment {
+  background: #ffffff;
+  padding: 5px 10px 5px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  border-radius: 2px;
+  margin-bottom: 10px;
+  /*border-top: 1px solid #3f51b5;*/
+  border-left: 3px solid #3f51b5;
+  width: 925px;
+  position: relative;
+}
+
+.green {
+  border-left: 3px solid green;
+}
+
+.red {
+  border-left: 3px solid red;
+}
+
+.comment p {
+  width: 100%;
+}
+
+.comment:hover .hide {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.upvote-box .upvote {
+  padding: 8px 8px 0 8px;
+  border-radius: 3px 3px 1px 1px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+
+.upvote-box .downvote {
+  padding: 0 8px 8px 8px;
+  border-radius: 1px 1px 3px 3px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.upvote-box .upvote:hover, .upvote-box .downvote:hover {
+  color: #3f51b5;
+}
+
+.upvote-box {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: -45px;
+  padding: 3px 10px 20px 10px;
+  color: #000000;
+}
+
+.button-pressed {
+  color: #ffffff;
+  background-color: #3f51b5;
+}
+
+.button-pressed:hover {
+  color: #000000 !important;
+}

@@ -1,0 +1,79 @@
+<div class="container">
+
+  <form *ngIf="user" #commentForm="ngForm" novalidate (ngSubmit)="commentForm.valid && onSubmit(commentForm.value)" style="margin-bottom:10px;">
+    <md-input-container [hideRequiredMarker]="true" style="width:100%">
+      <textarea mdInput ngModel #message="ngModel" required minlength="5" name="message" rows=3 style="resize: vertical;" placeholder="Your comment"></textarea>
+    </md-input-container>
+    <div style="color:red;font-size:12px;" *ngIf="message.errors && (message.dirty || message.touched)" class="alert alert-danger">
+      <p [hidden]="!message.errors.minlength">
+        Message must be at least 5 characters long.
+      </p>
+    </div>
+    <button type="submit" color="primary" [disabled]="!commentForm.valid" md-raised-button>Send</button>
+    <button (click)="commentForm.resetForm();" md-raised-button>Clear</button>
+  </form>
+
+  <div *ngIf="comments == 0" class="comment">
+    <p>No comments yet! Be first! :)</p>
+  </div>
+  <div *ngIf="comments != 0" style="display:flex;">
+    <h4>{{comments?.length}} comments:</h4>
+    <span class="spacer"></span>
+    <md-select placeholder="sort by">
+      <md-option (click)="sortComments(true)">Top</md-option>
+      <md-option (click)="sortComments(false)">Date</md-option>
+    </md-select>
+  </div>
+
+  <div *ngFor="let comment of comments" class="comment green red" [class.green]="comment.currentVote == '1'" [class.red]="comment.currentVote == '-1'">
+    <!-- Upvoting START -->
+    <div *ngIf="user" class="upvote-box hide">
+      <div (click)="vote(comment, 1)" class="upvote button-pressed" [class.button-pressed]="comment.currentVote == '1'">
+        <fa [name]="'sort-up'" [size]=1></fa>
+      </div>
+      <div (click)="vote(comment, -1)" class="downvote button-pressed" [class.button-pressed]="comment.currentVote == '-1'">
+        <fa [name]="'sort-down'" [size]=1></fa>
+      </div>
+    </div>
+    <!-- Upvoting END -->
+    <div *ngIf="!comment.editing; else modify">
+      <md-chip-list>
+        <md-chip *ngIf="comment.user.role == 'user'">{{comment.user.username}}</md-chip>
+        <md-chip *ngIf="comment.user.role == 'admin'" color="primary" selected="true">
+          <fa mdTooltip="Staff" style="color:gold;" [mdTooltipPosition]="'below'" [name]="'wrench'" [size]=0></fa> {{comment.user.username}}
+        </md-chip>
+        <md-chip style="background-color:#ffffff; color: gray;">{{comment.when | amTimeAgo}}</md-chip>
+        <md-chip style="background-color:#ffffff; color: gray;">{{comment.points}} points</md-chip>
+        <span class="spacer"></span>
+        <div class="hide" *ngIf="user && (user.twitchId == comment.user.twitchId || user.role == 'admin')">
+          <md-chip style="background-color:#ffffff; color:black;  cursor: pointer;" mdTooltip="Edit post" [mdTooltipPosition]="'below'" (click)="isEditing(comment)" color="accent" selected="true">
+            <fa [name]="'pencil'" [size]=1></fa>
+          </md-chip>
+          <md-chip style="background-color:#ffffff; color:black;  cursor: pointer;" mdTooltip="Remove post" [mdTooltipPosition]="'below'" (click)="remove(comment)" color="accent" selected="true">
+            <fa [name]="'trash'" [size]=1></fa>
+          </md-chip>
+          <!-- <md-chip *ngIf="user.role == 'admin'" mdTooltip="Ban user" [mdTooltipPosition]="'below'" (click)="console.log('banned')" color="accent" selected="true">
+            <fa [name]="'ban'" [size]=1></fa>
+          </md-chip> -->
+        </div>
+      </md-chip-list>
+      <p>{{comment.message}}</p>
+    </div>
+    <ng-template #modify>
+      <form #editForm="ngForm" novalidate (ngSubmit)="editForm.valid && update(comment)">
+        <md-input-container [hideRequiredMarker]="true" style="width:100%">
+          <textarea rows=3 mdInput required minlength="5" style="resize: vertical;" #message="ngModel" name="message" [(ngModel)]="comment.message" placeholder="Your comment">{{comment.message}}</textarea>
+        </md-input-container>
+        <div style="color:red;font-size:12px;" *ngIf="message.errors && (message.dirty || message.touched)">
+          <p [hidden]="!message.errors.minlength">
+            Message must be at least 5 characters long.
+          </p>
+        </div>
+        <button type="submit" color="primary" [disabled]="!editForm.valid" md-raised-button>Save</button>
+        <button (click)="isEditing(comment)" color="primary" md-raised-button>Cancel</button>
+      </form>
+    </ng-template>
+  </div>
+
+
+</div>

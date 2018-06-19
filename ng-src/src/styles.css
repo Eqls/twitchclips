@@ -1,0 +1,58 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin:0;
+  margin-bottom: 100px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #3f51b5;
+}
+
+/* Clip tile*/
+
+.clip {
+  margin: 6px 4px;
+  width: 260px;
+}
+
+.clip img {
+  height:147px;
+  width: 100%;
+}
+
+.clip .title {
+  font-size: 14px;
+  display:inline-block;
+  width:240px;
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}
+
+.clip .details {
+  color: darkgray;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.clipbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clipbox h3  {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

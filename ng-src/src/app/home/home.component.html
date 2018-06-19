@@ -1,0 +1,38 @@
+<div class="clipbox">
+  <h3>Now trending</h3>
+  <fa *ngIf="!dayLoaded" [name]="'refresh'" style="animation: fa-spin 1s infinite linear; margin:0 auto;" [size]=2 [spin]=true aria-hidden="true"></fa>
+  <div *ngFor="let clip of dayTop" class="clip">
+    <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+    <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+    <div class="details">
+      <span>{{clip.views}} views</span>
+      <span>on {{clip.streamer}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="clipbox">
+  <h3>Week's top</h3>
+  <fa *ngIf="!weekLoaded" [name]="'refresh'" style="animation: fa-spin 1s infinite linear; margin:0 auto;" [size]=2 [spin]=true aria-hidden="true"></fa>
+  <div *ngFor="let clip of weekTop" class="clip">
+    <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+    <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+    <div class="details">
+      <span>{{clip.views}} views</span>
+      <span>on {{clip.streamer}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="clipbox">
+  <h3>Month's top</h3>
+  <fa *ngIf="!monthLoaded" [name]="'refresh'" style="animation: fa-spin 1s infinite linear; margin:0 auto;" [size]=2 [spin]=true aria-hidden="true"></fa>
+  <div *ngFor="let clip of monthTop" class="clip">
+    <a [routerLink]="['/clip', clip.slug]"><img src="{{clip.thumbnail}}"></a>
+    <span class="title" title="{{clip.title}}"><a [routerLink]="['/clip', clip.slug]">{{clip.title}}</a></span>
+    <div class="details">
+      <span>{{clip.views}} views</span>
+      <span>on {{clip.streamer}}</span>
+    </div>
+  </div>
+</div>
